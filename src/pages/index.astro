@@ -1,24 +1,101 @@
 ---
-import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-
-const items = (await getCollection('items'))
-  .filter((item) => item.data.status === 'available')
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+import '../styles/global.css';
 ---
 
-<Base title="Inventory">
-  <div class="container">
-    <div class="item-grid">
-      {items.map((item, i) => (
-        <a href={`/items/${item.id}`} class={`grid-item fade-up stagger-${Math.min(i + 1, 6)}`}>
-          <img src={item.data.coverImage} alt={item.data.title} loading="lazy" />
-          <div class="item-overlay">
-            <h3 class="heading-md">{item.data.title}</h3>
-            <p class="label-sm" style="margin-top: 4px;">{item.data.origin}</p>
-          </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Shastardhari — Antique Indo-Persian Arms & Armour" />
+    <title>Shastardhari — Antique Indo-Persian Arms & Armour</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="holding">
+      <div class="holding-content">
+        <h1 class="holding-title fade-up">Shastardhari</h1>
+        <div class="holding-line fade-up stagger-1"></div>
+        <p class="holding-subtitle fade-up stagger-2">Antique Indo-Persian Arms & Armour</p>
+        <p class="holding-note fade-up stagger-3">New site coming soon</p>
+        <a href="https://www.instagram.com/shastardhari/" target="_blank" rel="noopener" class="holding-ig fade-up stagger-4">
+          Instagram
         </a>
-      ))}
+      </div>
     </div>
-  </div>
-</Base>
+  </body>
+</html>
+
+<style>
+  .holding {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .holding-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .holding-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 42px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  .holding-line {
+    width: 48px;
+    height: 1px;
+    background: var(--color-border-hover);
+    margin: 28px 0;
+  }
+
+  .holding-subtitle {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .holding-note {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--color-subtle);
+    margin-top: 32px;
+  }
+
+  .holding-ig {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-subtle);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-top: 48px;
+  }
+
+  .holding-ig:hover {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .holding-title {
+      font-size: 28px;
+      letter-spacing: 6px;
+    }
+  }
+</style>
