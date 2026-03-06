@@ -1,0 +1,95 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a href="/" class="logo">
+    <h1 class="logo-title">Shastardhari</h1>
+    <p class="logo-subtitle">Antique Indo-Persian Arms & Armour</p>
+  </a>
+
+  <nav class="nav">
+    <a href="/" class:list={["nav-link", { active: currentPath === "/" }]}>Inventory</a>
+    <a href="/sold" class:list={["nav-link", { active: currentPath === "/sold/" || currentPath === "/sold" }]}>Sold</a>
+    <a href="/enquire" class:list={["nav-link", { active: currentPath === "/enquire/" || currentPath === "/enquire" }]}>Enquire</a>
+  </nav>
+</header>
+
+<div class="header-line"></div>
+
+<style>
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 48px;
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  .logo-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 18px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--color-text);
+  }
+
+  .logo-subtitle {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-subtle);
+    margin-top: 4px;
+  }
+
+  .nav {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.4s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-text);
+  }
+
+  .header-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-border), transparent);
+    margin: 0 48px;
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      flex-direction: column;
+      gap: 24px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .nav {
+      gap: 24px;
+    }
+
+    .header-line {
+      margin: 0 24px;
+    }
+  }
+</style>

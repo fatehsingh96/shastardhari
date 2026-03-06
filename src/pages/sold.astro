@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const soldItems = (await getCollection('items'))
+  .filter((item) => item.data.status === 'sold')
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Base title="Sold">
+  <div class="container-narrow">
+    <h2 class="heading-lg fade-up">Sold</h2>
+    <p class="label-sm fade-up stagger-1" style="margin-top: 12px; margin-bottom: 48px;">
+      Previously available pieces
+    </p>
+
+    {soldItems.map((item, i) => (
+      <a href={`/items/${item.id}`} class={`sold-row fade-up stagger-${Math.min(i + 1, 6)}`}>
+        <span class="heading-md" style="font-size: 18px;">{item.data.title}</span>
+        <span class="label-sm">{item.data.origin}</span>
+      </a>
+    ))}
+  </div>
+</Base>

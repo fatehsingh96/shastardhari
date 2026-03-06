@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('items'))
+  .filter((item) => item.data.status === 'available')
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Base title="Inventory">
+  <div class="container">
+    <div class="item-grid">
+      {items.map((item, i) => (
+        <a href={`/items/${item.id}`} class={`grid-item fade-up stagger-${Math.min(i + 1, 6)}`}>
+          <img src={item.data.coverImage} alt={item.data.title} loading="lazy" />
+          <div class="item-overlay">
+            <h3 class="heading-md">{item.data.title}</h3>
+            <p class="label-sm" style="margin-top: 4px;">{item.data.origin}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

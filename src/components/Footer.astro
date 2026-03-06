@@ -1,0 +1,50 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <a href="https://www.instagram.com/shastardhari/" target="_blank" rel="noopener" class="ig-link">
+    Instagram
+  </a>
+  <span class="copyright">© Shastardhari {year}</span>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(138, 133, 120, 0.1);
+  }
+
+  .ig-link {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-subtle);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .ig-link:hover {
+    color: var(--color-muted);
+  }
+
+  .copyright {
+    font-family: var(--font-body);
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-faint);
+  }
+
+  @media (max-width: 768px) {
+    .site-footer {
+      padding: 32px 24px;
+    }
+  }
+</style>
